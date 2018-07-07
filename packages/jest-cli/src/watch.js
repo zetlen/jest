@@ -236,7 +236,9 @@ export default function watch(
       outputStream,
       startRun,
       testWatcher,
-    }).catch(error => console.error(chalk.red(error.stack)));
+    }).catch(error =>
+      outputStream.write(chalk.red('\n' + (error.stack || error.message))),
+    );
   };
 
   const onKeypress = (key: string) => {
